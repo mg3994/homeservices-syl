@@ -55,6 +55,7 @@ jobs:
       - name: Get Flutter Dependencies
         run: flutter pub get
       - name: Activate Rename
+        if: ${{ github.event.inputs.custom_package_name != '' ||  github.event.inputs.custom_app_name != ''}}
         run: flutter pub global activate rename
 
       - name: Build Runner Build
