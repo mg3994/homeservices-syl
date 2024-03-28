@@ -10,7 +10,7 @@ class LoginController extends GetxController {
   final passwordController = TextEditingController();
   final isLoading = false.obs;
   void goToRegistrationScreen() {
-    Get.offNamed(Routes.registration);
+    Get.toNamed(Routes.registration);
   }
 
   void goToAuthenticationScreen() {
