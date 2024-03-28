@@ -82,19 +82,20 @@ jobs:
         if: ${{ github.event.inputs.custom_package_name != '' }}
         run: rename setBundleId --value "${{ github.event.inputs.custom_package_name }}"
 
-      - name: Generate AAB or APK
+      - name: Generate APK or AAB
+        id: generate_aab_or_apk
         run: |
-          if ${{ github.event.inputs.aab_generation == true }}; then
+          if [ "${{ github.event.inputs.aab_generation }}" == "true" ]; then
             flutter build appbundle --release
-            echo "artifact_path=build/app/outputs/bundle/release/app-release.aab" >> $GITHUB_ENV
+            echo "::set-output name=artifact_path::build/app/outputs/bundle/release/app-release.aab"
           else
             flutter build apk --release --split-per-abi
-            echo "artifact_path=build/app/outputs/flutter-apk/*" >> $GITHUB_ENV
+            echo "::set-output name=artifact_path::build/app/outputs/flutter-apk/*"
           fi
 
       - name: Push to Releases
         uses: ncipollo/release-action@v1
         with:
-          artifacts: ${{ env.artifact_path }}
+          artifacts: ${{ steps.generate_aab_or_apk.outputs.artifact_path }}
           tag: v1.0.${{ github.run_number }}
           token: ${{ secrets.TOKEN }}

@@ -10,7 +10,7 @@ abstract class Routes {
 }
 
 abstract class _Paths {
-  static const splash = '/splash/';
+  static const splash = '/';
   static const login = '/login/';
   static const registration = '/registration/';
   static const authentication = '/authentication/';

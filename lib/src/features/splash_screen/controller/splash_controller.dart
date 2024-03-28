@@ -6,12 +6,12 @@ class SplashController extends GetxController {
   static SplashController get find => Get.find<SplashController>();
   RxBool animate = false.obs;
 
-  // @override
-  // void onReady() {
-  //   // TODO: implement onReady
-  //   startAnimation();
-  //   super.onReady();
-  // }
+  @override
+  void onReady() {
+    // TODO: implement onReady
+    startAnimation();
+    super.onReady();
+  }
 
   Future startAnimation() async {
     await Future.delayed(const Duration(milliseconds: 500));
