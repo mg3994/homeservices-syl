@@ -95,5 +95,5 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           artifacts: ${{ env.artifact_path }}
-          tag: v1.0.${{ github.run-number }}
+          tag: v1.0.${{ github.run_number }}
           token: ${{ secrets.TOKEN }}
